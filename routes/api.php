@@ -19,13 +19,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/example', function () {
-    return response()->json(['message' => 'Hello from Laravel!']);
-});
-Route::post('/data', function (Request $request) {
-    // Process the request data here
-    return response()->json(['received' => $request->all()]);
-});
+// Route::get('/example', function () {
+//     return response()->json(['message' => 'Hello from Laravel!']);
+// });
+// Route::post('/data', function (Request $request) {
+//     // Process the request data here
+//     return response()->json(['received' => $request->all()]);
+// });
 
-// Route::get('/example', [ApiController::class, 'getExample']);
+Route::get('/example', [ApiController::class, 'getExample']);
 // Route::post('/data', [ApiController::class, 'postData']);
+Route::group(['middleware' => 'cors'], function () {
+    Route::post('/data', [ApiController::class, 'postData']);
+});
