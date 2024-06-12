@@ -13,17 +13,16 @@ class ApiController extends Controller
 
     public function postData(Request $request)
     {
-        dd($request->all());
-        return response()->json(['received' => $request->all()]);
-        // $validated = $request->validate([
-        //     'text' => 'required|string|max:255',
-        // ]);
+        // return response()->json(['received' => $request->all()]);
+        $validated = $request->validate([
+            'text' => 'required|string|max:255',
+        ]);
 
-        // // Example processing
-        // $response = [
-        //     'message' => 'Data received successfully',
-        //     'data' => $validated,
-        // ];
-        // return response()->json($response);
+        // Example processing
+        $response = [
+            'message' => 'Data received successfully',
+            'data' => $validated,
+        ];
+        return response()->json($response);
     }
 }
